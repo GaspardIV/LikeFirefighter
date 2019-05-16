@@ -7,14 +7,14 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
-import android.util.Log;
 import android.widget.Toast;
 
 
 public class NotificationListener extends NotificationListenerService {
     public static final String FACEBOOK_MESSENGER_PACK_NAME = "com.facebook.orca";
     public static final String TAG = "XDDD";
-//    Context context;
+
+    //    nice tutorials
     //    https://medium.com/@polidea/how-to-respond-to-any-messaging-notification-on-android-7befa483e2d7
     //    https://github.com/Chagall/notification-listener-service-example
 
@@ -60,6 +60,7 @@ public class NotificationListener extends NotificationListenerService {
                 if (action.title.equals("Like")) {
                     try {
                         action.actionIntent.send();
+                        action.actionIntent.send();
                     } catch (PendingIntent.CanceledException e) {
                         e.printStackTrace();
                     }
@@ -73,7 +74,8 @@ public class NotificationListener extends NotificationListenerService {
         Bundle extras = sbn.getNotification().extras;
         String title = extras.getString("android.title");
         CharSequence text = extras.getCharSequence("android.text")/*.length()*/;
-        return text != null && text.length() == 2 && (int) text.charAt(0) == 55357 && (int) text.charAt(1) == 56397;
+        return text != null && ((text.length() == 2 && (int) text.charAt(0) == 55357 && (int) text.charAt(1) == 56397)
+                || (text.length() == 3 && text.charAt(0) == '(' && text.charAt(1) == 'y' && text.charAt(2) == ')'));
     }
 
     private boolean isMessengerNotification(StatusBarNotification sbn) {
