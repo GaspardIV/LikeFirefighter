@@ -29,10 +29,8 @@ public class NotificationListener extends NotificationListenerService {
     @Override
     public void onNotificationRemoved(StatusBarNotification sbn) {
         if (sbn.getPackageName().equals(FACEBOOK_MESSENGER_PACK_NAME)) {
-//            Toast.makeText(this, "wez", Toast.LENGTH_LONG).show();
             for (StatusBarNotification notification : this.getActiveNotifications()) {
                 if (notification.getPackageName().equals(FACEBOOK_MESSENGER_PACK_NAME)) {
-//                    Toast.makeText(this, "jeszcze", Toast.LENGTH_LONG).show();
                     handleNotification(notification);
                 }
             }
@@ -42,18 +40,15 @@ public class NotificationListener extends NotificationListenerService {
     private void handleNotification(StatusBarNotification sbn) {
         if (sbn.getPackageName().equals(FACEBOOK_MESSENGER_PACK_NAME)) {
             Notification.Action[] actions = sbn.getNotification().actions;
-            try {
-                for (Notification.Action action : actions) {
-                    if (action.title == "Like") {
+            for (Notification.Action action : actions) {
+                if (action.title == "Like") {
+                    try {
                         action.actionIntent.send();
+                    } catch (PendingIntent.CanceledException e) {
+                        e.printStackTrace();
                     }
-//                    Log.d(TAG, "onNotificationPosted: " + action.toString() + "   " + action.title);
                 }
-//                actions[0].actionIntent.send();
-            } catch (PendingIntent.CanceledException e) {
-                e.printStackTrace();
             }
-//            Log.d("XDD", "onNotificationPosted: " + sbn.getNotification().toString());
             Toast.makeText(this, "like firefighter :)", Toast.LENGTH_LONG).show();
         }
     }
