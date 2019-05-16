@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             enableNotificationListenerAlertDialog.show();
         }
 
-//        this.startService(new Intent(this, NotificationListener.class));
+        this.startService(new Intent(this, NotificationListener.class));
 
     }
 
