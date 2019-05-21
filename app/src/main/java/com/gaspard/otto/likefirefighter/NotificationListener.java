@@ -9,6 +9,8 @@ import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.widget.Toast;
 
+import com.gaspard.otto.likefirefighter.Utils.CharSequenceUtil;
+
 
 public class NotificationListener extends NotificationListenerService {
     public static final String FACEBOOK_MESSENGER_PACK_NAME = "com.facebook.orca";
@@ -32,19 +34,27 @@ public class NotificationListener extends NotificationListenerService {
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
-        handleNotification(sbn);
-        super.onNotificationPosted(sbn);
+        handleAllNotifications(this.getActiveNotifications());
     }
 
     @Override
     public void onNotificationRemoved(StatusBarNotification sbn) {
-        if (sbn.getPackageName().equals(FACEBOOK_MESSENGER_PACK_NAME)) {
-            for (StatusBarNotification notification : this.getActiveNotifications()) {
-                if (notification.getPackageName().equals(FACEBOOK_MESSENGER_PACK_NAME)) {
-                    handleNotification(notification);
+
+        handleAllNotifications(this.getActiveNotifications());
+    }
+
+
+    private void handleAllNotifications(final StatusBarNotification[] sbn) {
+        new Thread() {
+            @Override
+            public void run() {
+                for (StatusBarNotification notification : sbn) {
+                    if (notification.getPackageName().equals(FACEBOOK_MESSENGER_PACK_NAME)) {
+                        handleNotification(notification);
+                    }
                 }
             }
-        }
+        }.start();
     }
 
     private void handleNotification(StatusBarNotification sbn) {
@@ -74,6 +84,7 @@ public class NotificationListener extends NotificationListenerService {
         Bundle extras = sbn.getNotification().extras;
         String title = extras.getString("android.title");
         CharSequence text = extras.getCharSequence("android.text")/*.length()*/;
+        text = CharSequenceUtil.removeWhitespaces(text);
         return text != null && ((text.length() == 2 && (int) text.charAt(0) == 55357 && (int) text.charAt(1) == 56397)
                 || (text.length() == 3 && text.charAt(0) == '(' && text.charAt(1) == 'y' && text.charAt(2) == ')'));
     }
