@@ -1,4 +1,4 @@
-package com.gaspard.otto.likefirefighter;
+package com.gaspard.otto.ballisticmessagedefense;
 
 import android.content.ComponentName;
 import android.content.DialogInterface;
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
             //It say to Notification Manager RE-BIND your service to listen notifications again inmediatelly!
             requestRebind(componentName);
-            Toast.makeText(this, "clicked", Toast.LENGTH_LONG).show();
+//            Toast.makeText(this, "clicked", Toast.LENGTH_LONG).show();
 
         }
     }

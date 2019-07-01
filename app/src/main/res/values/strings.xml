@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">LikeFirefighter</string>
-    <string name="service_name">LikeFirefighterService</string>
-    <string name="notification_listener_service">prosze :)</string>
-    <string name="notification_listener_service_explanation">wytlumacznie</string>
+    <string name="app_name">BallisticMessageDefense</string>
+    <string name="service_name">BallisticMessageDefenseService</string>
+    <string name="notification_listener_service">Grant permission</string>
+    <string name="notification_listener_service_explanation">Grant notification access permission to allow this app reading messenger notifications.</string>
     <string name="yes">yes</string>
     <string name="no">no</string>
 </resources>

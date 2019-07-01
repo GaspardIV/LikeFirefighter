@@ -1,4 +1,4 @@
-package com.gaspard.otto.likefirefighter.Utils;
+package com.gaspard.otto.ballisticmessagedefense.Utils;
 
 public class CharSequenceUtil {
 
