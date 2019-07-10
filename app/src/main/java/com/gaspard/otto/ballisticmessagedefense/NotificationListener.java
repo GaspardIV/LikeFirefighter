@@ -213,9 +213,9 @@ public class NotificationListener extends NotificationListenerService {
         Bundle extras = sbn.getNotification().extras;
         CharSequence text = extras.getCharSequence("android.text")/*.length()*/;
         text = CharSequenceUtil.removeWhitespaces(text);
-        if (text.length() >= 3 && text.charAt(text.length()-3) == ':') {
+        if (text != null && text.length() >= 3 && text.charAt(text.length()-3) == ':') {
             text = text.subSequence(text.length() - 2, text.length());
-        } else if (text.length() >= 2 && text.charAt(text.length()-2) == ':') {
+        } else if (text != null && text.length() >= 2 && text.charAt(text.length()-2) == ':') {
             text = text.subSequence(text.length()-1, text.length());
         }
         for (int[] ints : conversationEmojiOtherThanLike) {
